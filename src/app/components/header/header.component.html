@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-between align-items-end mt-1" >
+    <img src="./assets/archents_logo.png" class="logo" (click)="logo_click()" />
+    <div class="d-flex me-5 align-items-center hi" *ngIf="sharedservice.isloggedIn" >
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Hi {{name}}  <span class="exclamation">!</span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li class="d-flex justify-content-center"><a class="dropdown-item text-center" (click)="logout()">Logout</a></li>
+  
+        </ul>
+      </div>
+      
+    </div>
+  </div>

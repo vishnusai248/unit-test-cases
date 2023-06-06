@@ -1,0 +1,134 @@
+<div class="admin-dashboard">
+    <div class="emp_Head d-flex justify-content-between">
+        <div class="d-flex ms-1">
+            <h2 class="m-0 heading_text">Employee List</h2>
+            <div class="ms-3 search_div flex-fill">
+                <div class="search-container">
+                    <input type="search" class="search-input form-control search" placeholder="Search by Emp.Name"
+                        [(ngModel)]="searchedName" (ngModelChange)="searchChange($event)">
+                    <img src="./assets/search_icon.png" class="search_icon" *ngIf="searchedName==''">
+                </div>
+
+            </div>
+
+        </div>
+        <div class="d-flex align-items-center ms-auto">
+            <button title="List View" class="toggle-button" [class.active]="isListView"
+                (click)="toggleViewMode('list')"><img src="./assets/list_view.png" class="list_view"></button>
+            <button title="Grid View" class="ms-2  toggle-button" [class.active]="isGridView"
+                (click)="toggleViewMode('grid')"><img src="./assets/grid_view.png" class="grid_view"></button>
+        </div>
+    </div>
+    <div class="content_div">
+        <!-- <div class="d-flex justify-content-end mb-3">
+            <div class="search_div w-25">
+                <div class="search-container">
+                    <input type="search" class="form-control search" placeholder="Search by Name" [(ngModel)]="searchedName"
+                        (ngModelChange)="searchChange($event)">
+                    <img src="./assets/search_icon.png" class="search_icon">
+                </div>
+            </div>
+        </div> -->
+        <div class="emp_table list" *ngIf="isListView">
+            <div class="table_header">
+                <div class="row align-items-center" style="--bs-gutter-x:0 !important">
+                    <!-- <div class="col-1 heading">S.No</div> -->
+                    <div class="col-1 heading">Emp.ID</div>
+                    <div class="col-3 heading">Employee Name</div>
+                    <div class="col-4 heading d-flex justify-content-start">Contact</div>
+                    <div class="col-2 heading">Designation</div>
+                    <div class="col-2 heading">Actions</div>
+                </div>
+            </div>
+            <div class="table_content">
+                <div class="table_row" *ngFor="let data of employeeList;let i=index">
+                    <div class="data_card row m-auto" [ngClass]="data.isActive?'':'card_color'">
+                        <!-- <div class="col-1 column_data">{{i}}.</div> -->
+                        <div class="col-1 column_data">{{data.employeeID}}</div>
+                        <div class="col-3 column_data name-column">{{data.name | titlecase}}</div>
+                        <div class="col-4 column_data justify-content-start text-start">
+                            <div class="d-flex flex-column">
+                                <div class="phone-field">{{data.phoneNumber}}</div>
+                                <div class="email-field">{{data.email}}</div>
+                            </div>
+                        </div>
+                        <div class="col-2 column_data">{{data.designation}}</div>
+                        <div class="col-2 column_data">
+                            <div class="matmenu_dots" [matMenuTriggerFor]="menu" (click)="actionsclick(data)">
+                                <mat-icon>more_vert</mat-icon>
+                            </div>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="editAccess(data)">
+                                    <mat-icon style="color: rgb(107, 207, 240);">edit</mat-icon>
+                                    <span>Edit Aceess</span>
+                                </button>
+                                <button mat-menu-item >
+                                    <mat-slide-toggle color="primary" [(ngModel)]="ActiveStatus" (change)="onToggleChange($event,data)">
+                                    <span [ngStyle]="{'color':ActiveStatus? 'green':'red'}" class="status-indicator" [ngClass]="{ active: ActiveStatus }">{{ ActiveStatus ? 'Active' : 'Inactive' }}</span>
+                                    </mat-slide-toggle>
+                                    <!-- <mat-icon style="color: rgb(230, 84, 84);">delete</mat-icon>
+                                    <span>Delete</span> -->
+                                </button>
+                            </mat-menu>
+                           
+                    
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="employeeList.length==0">
+                    <div class="d-flex justify-content-center align-items-center p-3">
+                        No Employees Data Found
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid" *ngIf="isGridView">
+            
+                <div class="grid_content">
+                    <div class="grid_card" *ngFor="let data of employeeList;let i=index" [ngClass]="data.isActive?'':'card_color'">
+                        <div class="d-flex justify-content-between" >
+                            <div class="grid_card_details d-flex flex-column ps-1">
+                                <div class="employee_name">{{data.name | titlecase}}</div>
+                                <div class="employee_code">{{data.employeeID}}</div>
+                                <div class="employee_designtion">{{data.designation}}</div>
+                                <div class="employee_mobile">{{data.phoneNumber}}</div>
+                                <div class="employee_email">{{data.email}}</div>
+                            </div>
+                            <div>
+                                <div class="matmenu_dots" [matMenuTriggerFor]="menus">
+                                    <mat-icon>more_vert</mat-icon>
+                                </div>
+                                <mat-menu #menus="matMenu">
+                                <button mat-menu-item (click)="editAccess(data)">
+                                    <mat-icon style="color: rgb(107, 207, 240);">edit</mat-icon>
+                                    <span>Edit Aceess</span>
+                                </button>
+                                <button mat-menu-item >
+                                    <mat-slide-toggle color="primary" [(ngModel)]="ActiveStatus" (change)="onToggleChange($event,data)">
+                                    <span [ngStyle]="{'color':ActiveStatus? 'green':'red'}" class="status-indicator" [ngClass]="{ active: ActiveStatus }">{{ ActiveStatus ? 'Active' : 'Inactive' }}</span>
+                                    </mat-slide-toggle>
+                                    <!-- <mat-icon style="color: rgb(230, 84, 84);">delete</mat-icon>
+                                    <span>Delete</span> -->
+                                </button>
+                            </mat-menu>
+                                
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+<div class="pagination d-flex justify-content-end  ">
+
+    
+    <mat-paginator *ngIf="isListView" [length]="totalLength" [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page" (page)="onPageChange($event)">
+    </mat-paginator>
+    <mat-paginator *ngIf="isGridView" [length]="totalLength" [pageSize]="pageSize"
+        [pageSizeOptions]="[6,12,24,30,60]" aria-label="Select page" (page)="onPageChange($event)">
+    </mat-paginator>
+
+</div>

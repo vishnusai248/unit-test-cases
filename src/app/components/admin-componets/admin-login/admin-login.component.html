@@ -1,0 +1,75 @@
+<div class="d-flex justify-content-center mt bgcolor">
+  <div class="content_div" style="width:35%">
+    <!-- <img class="logo" src="" alt="logo" /> -->
+    
+    <h4 class="text-center">Admin Login</h4>
+    <form class="mt-2" [formGroup]="adminForm">
+        <!-- <div class="input_field mb-3">
+            <label class="form-label mt-2 ">User</label><br />
+            <input
+              class="form-control user"
+              type="text"
+              value="Admin"
+                readonly
+            
+            />
+          </div> -->
+      <div class="input_field mb-3">
+        <label class="form-label mt-2">Email ID</label><br />
+        <input
+          class="form-control "
+          type="email"
+          placeholder="Enter your registered email-id"
+          formControlName="userName"
+        />
+        <div *ngIf="f.userName.errors && (f.userName.dirty || f.userName.touched || isSubmitted)"
+            class="error-message mt-2">
+            <div *ngIf="f.userName.errors.required">Email-ID cannot be blank</div>
+            <div *ngIf="f.userName.errors.pattern">Invalid Email</div>
+          </div>
+      </div>
+
+      <div class="input_field">
+        <label class="form-label mt-2">Password</label><br />
+        <div style="position: relative;">
+          <input [type]="hide ? 'password' : 'text'" formControlName="loginPassword" id="pword" placeholder="Enter your Password"
+            class="form-control" minlength="8" maxlength="15" />
+          <mat-icon class="visibility-icon eyeicon" id="v-icon" (click)="myFunction()" *ngIf="f.loginPassword.dirty">
+            {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </div>
+        <div class="error-message"
+          *ngIf="(f.loginPassword.errors && (f.loginPassword.dirty || f.loginPassword.touched || isSubmitted)) "
+          id="fnmae-error" class="error-message mt-2">
+          <div *ngIf="f.loginPassword.errors.required">
+            Password is required
+          </div>
+          <div *ngIf="f.loginPassword.errors.pattern">
+            Password must be atleast 8 characters, maximum of 15 characters and should have 1 Uppercase,
+            1Lowercase, 1 number and 1 special character(!,@,$,%,^,&,-)
+          </div>
+        </div>
+        
+
+      </div>
+      <div class="error mt-3" *ngIf="erroroccured">
+        <div class="woops mb-2">Woops !</div>
+        <div>{{errormessege}}</div>
+      </div>
+      <div class="form-check-inline d-flex justify-content-end m-0">
+        <!-- <div class="d-flex align-items-center">
+            <input class="form-check-input mt-3 me-1" type="checkbox" />
+            <label class="form-check-label mt-3"> Remember Me </label>
+        </div> -->
+        <a class="link mt-3 forgot" (click)="changePass()">Change Password?</a>
+      </div>
+      
+      <div class="mt-4">
+        <button type="submit" class="btn btn-primary w-100" [disabled]="adminForm.invalid" (click)="Login()"
+        [disabled]="adminForm.invalid">Login</button>
+      </div>
+      <div class="d-flex justify-content-center mt-2 register_div">
+        <span>Not an Admin User? <a class="register" (click)="nonAdmin()">Click Here</a></span>
+      </div>
+    </form>
+    </div>
+  </div>

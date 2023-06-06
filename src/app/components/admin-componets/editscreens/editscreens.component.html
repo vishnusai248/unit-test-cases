@@ -1,0 +1,31 @@
+<div class="edit_div">
+    <div class="edit_header">
+        <h2 class="m-0" style="text-align: center;">Edit Access</h2>
+    </div>
+    <div class="edit_div_content">
+        <div class="details  mb-3">
+            <div class="name">User : <span class="incomingdata">{{data.name}}</span>
+            </div>
+            <div class="mailid">Email: <span class="incomingdata">{{data.email}}</span>
+            </div>
+        </div>
+        <div class="checkbox-container">
+            <div class="checkbox-column d-flex" *ngFor="let item of all_portals;let i=index">
+                <input class="form-check-input me-1" type="checkbox" [value]="item.name" (change)="checkboxchange($event,i)"
+                    [checked]="item.display">
+                <label class="form-check-label">{{ item.name | titlecase }}</label>
+                <!-- <input type="checkbox" [(ngModel)]="column.display"> {{column.name}} -->
+            </div>
+        </div>
+        <div class="submit_div mb-1 mt-3 d-flex justify-content-end">
+            <button class="btn btn-primary" type="submit" (click)="submitscreens(data.code)">Submit</button>
+        </div>
+
+        <!-- <div class="d-flex flex-wrap checklist">
+            <div class="form-check" *ngFor="let item of all_portals">
+                <input class="form-check-input" type="checkbox" [value]="item.name" [(ngModel)]="item.display">
+                <label class="form-check-label">{{ item.name | titlecase }}</label>
+              </div>
+        </div> -->
+    </div>
+</div>

@@ -1,0 +1,56 @@
+.edit_header{
+    background-color: rgb(82, 182, 212);
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.email-field{
+    font-size: 13px;
+}
+.name-field{
+    display: flex;
+    align-items: start;
+}
+::ng-deep .mat-mdc-menu-content {
+    padding: 0px !important;
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface{
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.edit_div_content{
+    padding: 20px 30px;
+}
+.details{
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 6px 0px #adb1b9;;
+   }
+.checkbox-container {
+    padding-block: 10px;
+    padding-inline-start: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    overflow-y: scroll;
+    height: 200px;
+    border:1px solid #e3e3e3;
+    border-radius: 10px;
+  }
+::-webkit-scrollbar{
+    width: 5px;
+  }
+::-webkit-scrollbar-track{
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb{
+    background: lightblue;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: #a5bdd3;
+}
+

@@ -1,0 +1,155 @@
+
+<main class="main">
+  <div class="content_box">
+   
+
+    <div class="d-flex cards_container">
+      <ng-container *ngFor="let screen of screensdetails">
+        <div class="cards" *ngIf="screen.display" (click)="card_click(screen.name)">
+          <div class="d-flex img_container">
+            <img class="image" [src]="screen.imgurl" />
+          </div>
+          <div class="name_container d-flex">
+            <span>{{ screen.name | titlecase }}</span>
+          </div>
+        </div>
+      </ng-container>
+
+
+
+
+
+      <!-- <div class="cards" (click)="card_click('orangehrm')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/orangehrm.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>OrangeHRM</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('ITHelpDesk')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/IT_Help_Desk_logo.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Archents ITMS</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('acianagit')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/git_image.jpeg" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Aciana Git</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('acianajira')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/jira.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Aciana Jira</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('archentsjira')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/jira.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span> Archents Jira</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('hrportal')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/HR_logo.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>HR Recruitment Portal</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('drysign')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/drysign_img.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Drysign</span>
+          </div>
+        </div>
+
+
+
+        <div class="cards" (click)="card_click('aciana_azure')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/azure.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Asiana Azure</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('archents_azure')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/azure.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Achents Azure</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('asiana_aws')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/aws.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Asiana AWS</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('archents_aws')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/aws.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Archents AWS</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('adobe')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/adobe.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Adobe</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('envato_elements')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/envato.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Envato Elements</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('canva_pro')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/canva.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Canva Pro</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('vimeo')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/vimeo.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Vimeo</span>
+          </div>
+        </div>
+        <div class="cards" (click)="card_click('vynod')">
+          <div class="d-flex img_container">
+            <img class="image" src="./assets/vynod.png" />
+          </div>
+          <div class="name_container d-flex">
+            <span>Vynod</span>
+          </div>
+        </div> -->
+    </div>
+  </div>
+</main>

@@ -1,0 +1,91 @@
+
+<!-- <div class="container-fluid mb-5 d-flex justify-content-center"> -->
+<div class="d-flex justify-content-center mt bgcolor">
+  <div class="content_div" style="width:50%">
+  <form novalidate autocomplete="off" [formGroup]="RegistrationForm">
+    <h4>Registration Form</h4>
+    <div class="row">
+      <div class="form-group mt-2 col-lg-6 col-md-6 col-sm-12 col-12">
+        <label class=" form-label">Full Name</label>
+        <input type="text" name="name" required class="form-control " placeholder="Enter your name"
+          formControlName="name" />
+        <small class="text-danger" [class.d-none]="f['name'].valid || f['name'].untouched">Full Name is required</small>
+      </div>
+
+      <div class="form-group mt-2 col-lg-6 col-md-6 col-sm-12 col-12">
+        <label class=" form-label">Email ID</label>
+        <input type="email" class="form-control " placeholder="Enter your email-id" 
+          pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" name="email" formControlName="email" required />
+        <!-- <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small> -->
+        <div *ngIf="f['email'].touched && (f['email'].errors)">
+          <small class="text-danger" *ngIf="f['email'].errors?.['required']">Email ID is required.</small>
+          <small class="text-danger" *ngIf="f['email'].errors?.['pattern']">Email ID should be in proper format.</small>
+        </div>
+      </div>
+
+      <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
+        <label class="mt-2 form-label">Phone Number</label>
+        <input type="tel" maxlength="10" required name="phoneNumber" class="form-control "
+          placeholder="Enter your phone number" formControlName="phone" />
+        <!-- <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number is required and must be 10 digits</small>  -->
+        <div *ngIf="f['phone'].errors && (f['phone'].touched)">
+          <small class="text-danger" *ngIf="f['phone'].errors?.['required']">Phone number is required</small>
+          <small class="text-danger" *ngIf="f['phone'].errors?.['pattern']">Phone number must be 10 digits</small>
+        </div>
+      </div>
+      <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
+        <label class="mt-2 form-label">Employee ID</label>
+        <input type="text" maxlength="8" required name="empId" class="form-control "
+          placeholder="IARC0001" formControlName="employeeId" [(ngModel)]="inputText" (input)="convertToUppercase()" />
+        <!-- <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number is required and must be 10 digits</small>  -->
+        <div *ngIf="f['employeeId'].errors && (f['employeeId'].touched)">
+          <small class="text-danger" *ngIf="f['employeeId'].errors?.['required']">Employee ID is required</small>
+          <small class="text-danger" *ngIf="f['employeeId'].errors?.['pattern']">Employee ID must begin with IARC followed by your four-digit number </small>
+        </div>
+      </div>
+      <div class="form-group mt-2 col-lg-6 col-md-6 col-sm-12 col-12">
+        <label class="mt-2 form-label">Designation</label>
+        <input type="text" name="designation" required class="form-control " placeholder="Enter your designation"
+          formControlName="designation" />
+        <small class="text-danger" [class.d-none]="f['designation'].valid || f['designation'].untouched">Designation is required</small>
+      </div>
+      <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12" >
+        <label class=" mt-2 form-label ">Password</label><br />
+        <div class="mt-2" style="position: relative;">
+        <input [type]="hide ? 'password' : 'text'" class="form-control mt-1 " type="password" required placeholder="Enter your password"
+          formControlName="password" />
+          <mat-icon class="visibility-icon eyeicon" id="v-icon" (click)="passwordhide()" *ngIf="f['password'].dirty">
+            {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </div>
+        <div *ngIf="f['password'].touched && f['password'].invalid" class="text-danger">
+          <div *ngIf="f['password'].errors?.['required']">Password is required.</div>
+        </div>
+      </div>
+      <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
+        <label class=" mt-2 form-label ">Confirm Password</label><br />
+        <div style="position: relative;">
+        <input [type]="confirm_hide ? 'password' : 'text'" class="form-control " type="password" placeholder="Enter your password again"
+          formControlName="passwordConfirm" />
+          <mat-icon class="visibility-icon eyeicon" id="v-icon" (click)="confirmhide()" *ngIf="f['passwordConfirm'].dirty">
+            {{confirm_hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </div>
+          <div *ngIf="f['passwordConfirm'].touched && f['passwordConfirm'].errors" class="text-danger">
+            <div *ngIf="f['passwordConfirm'].errors['required']">
+                Confirm Password is required
+            </div>
+            <div *ngIf="f['passwordConfirm'].errors['matching']">
+                Confirm Password does not match
+            </div>
+        </div>
+        
+      </div>
+      <div class="d-flex justify-content-center align-items-center flex-column mt-3">
+        <button class="btn w-50 btn-primary mt-3 " type="submit" (click)="register()" [disabled]="RegistrationForm.invalid">Register</button>
+        <span class="goback mt-2">Go back to <a (click)="backtologin()">Login</a></span>
+      </div>
+    </div>
+  </form>
+  
+</div>
+
+</div>
