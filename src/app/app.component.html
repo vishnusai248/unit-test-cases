@@ -1,0 +1,6 @@
+<header class="header">
+  <app-header></app-header>
+  </header>
+  <div [ngClass]="{'backcolor':sharedservice.isloggedIn,'content':!sharedservice.isloggedIn}">
+      <router-outlet></router-outlet>
+  </div>

@@ -1,0 +1,32 @@
+
+
+<div class="d-flex justify-content-center mt bgcolor">
+  <div class="content_div" style="width: 35%">
+    <h4 class="login mb-3 pb-2">Forgot password?</h4>
+    <p class="mt-3">
+      Enter your registered phone number ,we will send you a one time
+      password(OTP) to reset your password.
+    </p>
+    <form class="mt-2" [formGroup]="forgotPasswordForm">
+      <div>
+        <label class="form-label">Enter your phone number</label><br />
+        <input
+          class="form-control  "
+          type="text"
+          placeholder="Enter your phoneNumber"
+          formControlName="phoneNumber"
+          (keypress)="numberOnlyOtp($event)"
+          maxlength="10"
+        />
+        <div *ngIf="f['phoneNumber'].errors && (f['phoneNumber'].touched)" class="ms-2 mt-1">
+          <p class="text-danger" *ngIf="f['phoneNumber'].errors?.['required']">Phone number is required</p>
+          <p class="text-danger" *ngIf="f['phoneNumber'].errors?.['pattern']">Phone number must be 10 digits</p>
+        </div>
+        <div>
+          <button class="btn btn-primary mt-3" (click)="getOTP()" [disabled]="forgotPasswordForm.invalid">Get OTP</button>
+          <div class="goback mt-2 d-flex justify-content-start">Go back to&nbsp;<a (click)="backtologin()">Login</a></div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
