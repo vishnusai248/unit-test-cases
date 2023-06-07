@@ -57,15 +57,15 @@ it('should update the form control values when modified', () => {
     const controls = component.f;
     expect(controls).toBeDefined();
     expect(controls['otp']).toBeDefined();
-    expect(controls['otp'].value).toEqual('');
-    expect(controls['otp'].validator).toBeDefined();
-
     expect(controls['password']).toBeDefined();
-    expect(controls['passsword'].value).toEqual('');
-    expect(controls['password'].validator).toBeDefined();
-
     expect(controls['confirmPassword']).toBeDefined();
+
+    expect(controls['otp'].value).toEqual('');
+    expect(controls['password'].value).toEqual('');
     expect(controls['confirmPassword'].value).toEqual('');
+
+    expect(controls['otp'].validator).toBeDefined();
+    expect(controls['password'].validator).toBeDefined();
     expect(controls['confirmPassword'].validator).toBeDefined();
   });
 });

@@ -13,7 +13,7 @@ export class ForgotPageComponent implements OnInit{
   forgotPasswordForm: FormGroup;
   constructor( private formBuilder:FormBuilder,private authService:AuthenticationService,private router:Router){
     this.forgotPasswordForm=this.formBuilder.group({
-      phoneNumber:['',[Validators.required,Validators.pattern('^[789][0-9]{9}$')]],
+      phoneNumber:['',[Validators.required,Validators.pattern('^[6789][0-9]{9}$')]],
     })
   }
   ngOnInit(): void {
