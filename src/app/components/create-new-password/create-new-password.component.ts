@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./create-new-password.component.css']
 })
 export class CreateNewPasswordComponent {
-  adminCreatePasswordForm: FormGroup;
+  CreatePasswordForm: FormGroup;
   mobileNo:any;
   otpvalidation:boolean=false
   errormessege:any
@@ -21,7 +21,7 @@ export class CreateNewPasswordComponent {
   isSubmitted:boolean=false;
   constructor(private formBuilder: FormBuilder,private router: Router,private authService:AuthenticationService) {
     this.mobileNo=sessionStorage.getItem('mobileNo')
-    this.adminCreatePasswordForm = this.formBuilder.group(
+    this.CreatePasswordForm = this.formBuilder.group(
       {
         otp:['',[Validators.required]],
         password: ['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@$%^&-]).{8,15}$')]
@@ -40,7 +40,7 @@ export class CreateNewPasswordComponent {
   }
   
   get f() {
-    return this.adminCreatePasswordForm.controls;
+    return this.CreatePasswordForm.controls;
   }
   changemobile(){
     this.router.navigate(['user/forgot-password'])
@@ -73,14 +73,14 @@ export class CreateNewPasswordComponent {
   }
   submit() {
     this.isSubmitted = true;
-    if (this.adminCreatePasswordForm.invalid) {
+    if (this.CreatePasswordForm.invalid) {
       return;
     }
     let requestObj = {
       sid: sessionStorage.getItem('sid'),
-      code: this.adminCreatePasswordForm.value.otp,
+      code: this.CreatePasswordForm.value.otp,
       phoneNumber: this.mobileNo,
-      password: this.adminCreatePasswordForm.value.password  
+      password: this.CreatePasswordForm.value.password  
     }
     
     this.authService.reset(requestObj).subscribe((response) => {
