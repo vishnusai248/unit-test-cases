@@ -11,9 +11,9 @@ import { SharedServiceService } from 'src/app/services/shared-service.service';
 })
 export class MainPageComponent implements OnInit {
   name: any = '';
-email: any = '';
-screensArray:any=[];
-employeeID=sessionStorage.getItem('employeeID')
+  email: any = '';
+  screensArray: any = [];
+  employeeID = sessionStorage.getItem('employeeID')
   screensdetails = [
     { name: 'greyt hr', display: false, imgurl: './assets/greythr.png' },
     { name: 'orange Hrm', display: false, imgurl: './assets/orangehrm.png' },
@@ -33,7 +33,7 @@ employeeID=sessionStorage.getItem('employeeID')
     { name: 'vy ond', display: false, imgurl: './assets/vynod.png' },
     { name: 'hr portal', display: false, imgurl: './assets/HR_logo.png' },
   ]
-  constructor(private router: Router, private authService: AuthenticationService, private sharedservice: SharedServiceService,private adminservice:AdminserviceService) {
+  constructor(private router: Router, private authService: AuthenticationService, private sharedservice: SharedServiceService, private adminservice: AdminserviceService) {
     // this.name = sessionStorage.getItem('name');
     // console.log(sessionStorage.getItem('name'))
 
@@ -52,18 +52,16 @@ employeeID=sessionStorage.getItem('employeeID')
   }
   // keyNames = ['orange Hrm', 'itms', 'aciana jira'];
   fetchscreens() {
-    this.adminservice.UsergetAllScreens(this.employeeID).subscribe((response:any) => {
+    this.adminservice.UsergetAllScreens(this.employeeID).subscribe((response: any) => {
       // debugger
-
-    
       this.screensArray = response.screens
       this.screensetting()
     });
   }
   screensetting() {
     for (const keyName of this.screensArray) {
-      this.screensdetails.forEach(el=>{
-        if(el.name == keyName){
+      this.screensdetails.forEach(el => {
+        if (el.name == keyName) {
           el.display = true
         }
       })
@@ -71,7 +69,7 @@ employeeID=sessionStorage.getItem('employeeID')
 
   }
 
-  
+
 
 
   card_click(option: string) {
