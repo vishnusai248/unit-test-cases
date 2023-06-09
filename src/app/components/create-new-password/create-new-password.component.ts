@@ -10,24 +10,24 @@ import Swal from 'sweetalert2';
   styleUrls: ['./create-new-password.component.css']
 })
 export class CreateNewPasswordComponent {
-  adminCreatePasswordForm: FormGroup;
-  mobileNo:any;
-  otpvalidation:boolean=false
-  errormessege:any
+  CreatePasswordForm: FormGroup;
+  mobileNo: any;
+  otpvalidation: boolean = false
+  errormessege: any
   timeLeft: number = 120;
-  interval:any;
+  interval: any;
   hideTime: boolean = true;
-  hideResend: boolean=false;
-  isSubmitted:boolean=false;
-  constructor(private formBuilder: FormBuilder,private router: Router,private authService:AuthenticationService) {
-    this.mobileNo=sessionStorage.getItem('mobileNo')
-    this.adminCreatePasswordForm = this.formBuilder.group(
+  hideResend: boolean = false;
+  isSubmitted: boolean = false;
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthenticationService) {
+    this.mobileNo = sessionStorage.getItem('mobileNo')
+    this.CreatePasswordForm = this.formBuilder.group(
       {
-        otp:['',[Validators.required]],
-        password: ['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@$%^&-]).{8,15}$')]
+        otp: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@$%^&-]).{8,15}$')]
         ],
         confirmPassword: ['', Validators.required],
-      
+
       },
       {
         validators: [Validation.match('password', 'confirmPassword')]
@@ -38,32 +38,32 @@ export class CreateNewPasswordComponent {
   ngOnInit(): void {
     this.resendTimer()
   }
-  
+
   get f() {
-    return this.adminCreatePasswordForm.controls;
+    return this.CreatePasswordForm.controls;
   }
-  changemobile(){
+  changemobile() {
     this.router.navigate(['user/forgot-password'])
   }
   resendOTP() {
-  
+
     let requestObj = {
       phoneNumber: this.mobileNo
     }
     this.authService.getotp(requestObj).subscribe((response) => {
-    
+
       if (response) {
         clearInterval(this.interval);
         this.resendTimer()
-        sessionStorage.setItem('sid',response.verificationSID)
-        if(response.verificationStatus=='Success'){
+        sessionStorage.setItem('sid', response.verificationSID)
+        if (response.verificationStatus == 'Success') {
 
-          Swal.fire('Success','OTP Sent','success')
+          Swal.fire('Success', 'OTP Sent', 'success')
         }
 
       }
     }, (error) => {
-     
+
 
     })
 
@@ -73,47 +73,47 @@ export class CreateNewPasswordComponent {
   }
   submit() {
     this.isSubmitted = true;
-    if (this.adminCreatePasswordForm.invalid) {
+    if (this.CreatePasswordForm.invalid) {
       return;
     }
     let requestObj = {
       sid: sessionStorage.getItem('sid'),
-      code: this.adminCreatePasswordForm.value.otp,
+      code: this.CreatePasswordForm.value.otp,
       phoneNumber: this.mobileNo,
-      password: this.adminCreatePasswordForm.value.password  
+      password: this.CreatePasswordForm.value.password
     }
-    
+
     this.authService.reset(requestObj).subscribe((response) => {
       if (response) {
-        Swal.fire('Success!','Password Reset Successful','success')
+        Swal.fire('Success!', 'Password Reset Successful', 'success')
         this.router.navigate(['user/login'])
-        
+
       }
 
     }, (error) => {
-      this.otpvalidation=true
-      this.errormessege=error.error.errors
-      
+      this.otpvalidation = true
+      this.errormessege = error.error.errors
+
 
     })
   }
-  
-  backtologin(){
+
+  backtologin() {
     this.router.navigate(['user/login'])
   }
 
   public hide: boolean = true;
   passwordhide() {
-    this.hide = !this.hide;   
-}
-confirm_hide: boolean=true;
-  confirmhide(){
-    this.confirm_hide=!this.confirm_hide
+    this.hide = !this.hide;
+  }
+  confirm_hide: boolean = true;
+  confirmhide() {
+    this.confirm_hide = !this.confirm_hide
   }
 
-  numberOnlyOtp(event:any){
-    
-    if(event.charCode>57 || event.charCode<48){
+  numberOnlyOtp(event: any) {
+
+    if (event.charCode > 57 || event.charCode < 48) {
       event.preventDefault();
     }
   }

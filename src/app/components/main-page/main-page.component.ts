@@ -43,7 +43,6 @@ employeeID=sessionStorage.getItem('employeeID')
     this.screensetting()
     //prevent page to go back
     window.history.pushState(null, '', window.location.href);
-
     window.addEventListener('popstate', function (event) {
       window.history.pushState(null, '', window.location.href);
     });
@@ -54,8 +53,6 @@ employeeID=sessionStorage.getItem('employeeID')
   fetchscreens() {
     this.adminservice.UsergetAllScreens(this.employeeID).subscribe((response:any) => {
       // debugger
-
-    
       this.screensArray = response.screens
       this.screensetting()
     });
